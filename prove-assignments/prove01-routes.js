@@ -9,8 +9,8 @@ const getDefaultPage = () => '' +
     '<body style="padding: 32px">' +
       '<h2>Enter a username to add to the user list:</h2>' +
       '<form action="/create-user" method="post">' +
-        '<input type="text" name="username">' +
-        '<button type="submit">Add</button>' +
+        '<input type="text" style="height: 30px" name="username">' +
+        '<button type="submit" style="height: 30px">Add</button>' +
       '</form>' +
     '</body>' +
   '</html>';
