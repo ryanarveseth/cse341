@@ -1,1 +1,1 @@
-["ryanarveseth","arveseth.ryan@gmail.com","arv18001@byui.edu","ryanarveseth","yeahright"]
+["ryan arveseth","arv18001@byui.edu","some username","foo bar"]
