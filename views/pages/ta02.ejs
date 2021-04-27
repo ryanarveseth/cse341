@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../includes/header.ejs %>
+    <% include ../includes/header.ejs %>
 </head>
 
 <body>
-  <% include ../includes/nav.ejs %>
+<% include ../includes/nav.ejs %>
 <div class="jumbotron text-center">
-  <div class="container">
-    <h1><%= title %></h1>
-    <p>This is the placeholder for Team Activity 02</p>
-  </div>
+    <div class="container">
+        <h1><%= title %></h1>
+        <p>This is the placeholder for Team Activity 02</p>
+    </div>
+</div>
+<div>
+    <%= errorMessage %>
 </div>
 <div class="container">
-  
+    <form method="post" action="/ta02/addUser">
+        <label for="user">Add User:</label>
+        <input type="text" name="user" id="user">
+        <button type="submit">Send</button>
+    </form>
+    <form method="post" action="/ta02/removeUser">
+        <label for="user">Remove User:</label>
+        <input type="text" name="user" id="user">
+        <button type="submit">Send</button>
+    </form>
 </div>
+<ul>
+    <% users.forEach(user => { %>
+        <li><%= user %></li>
+    <% }) %>
+</ul>
 
 
 </body>
