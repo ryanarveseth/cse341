@@ -30,11 +30,12 @@ router.post('/addUser', (req, res, next) => {
 
 router.post('/removeUser', (req, res) => {
     const lengthBefore = users.length;
-    users = users.filter(user => user !== req.body.user);
-    const lengthAfter = users.length;
+    const {user} = req.body;
 
-    if (lengthBefore === lengthAfter) {
-        errorMessage = `User '${req.body.user}' could not be found`;
+    users = users.filter(userInList => userInList !== user);
+
+    if (lengthBefore === users.length) {
+        errorMessage = `User '${user}' could not be found`;
     }
 
     res.redirect('/ta02/', 302);
