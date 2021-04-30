@@ -1,0 +1,64 @@
+input {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    height: 150px;
+    width: 200px;
+    resize: none;
+    font-size: 16px;
+}
+
+form {
+    width: 400px;
+    max-height: 300px;
+    margin: auto auto;
+    color: whitesmoke;
+    padding: 16px;
+    border-radius: 6px;
+    background: #333333;
+}
+
+html {
+    font-family: Arial;
+}
+
+button:hover, a:hover {
+    color: mediumspringgreen;
+    background: gray;
+    text-decoration: none;
+}
+
+button, a {
+    transition: .25s;
+    color: gray;
+    background: mediumspringgreen;
+    font-size: 16px;
+    border-radius: 4px;
+    border-width: 0;
+    margin-top: 16px;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.books-list {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1 {
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+a {
+    margin-bottom: 32px;
+}
