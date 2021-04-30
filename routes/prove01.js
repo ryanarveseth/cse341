@@ -27,12 +27,12 @@ const createUser = (method, request, response) => {
     return request.on('end', () => {
       const parsedBody = Buffer.concat(body).toString();
       const userName = parsedBody.split('=')[1];
-      const userListString = fs.readFileSync('./prove-assignments/prove01.txt', 'utf-8');
+      const userListString = fs.readFileSync('./prove01.txt', 'utf-8');
       const userList = userListString ? JSON.parse(userListString) : [];
 
       userList.push(decodeURIComponent(userName));
 
-      fs.writeFileSync('./prove-assignments/prove01.txt', JSON.stringify(userList));
+      fs.writeFileSync('./prove01.txt', JSON.stringify(userList));
 
       response.statusCode = 302;
       response.setHeader('Location', '/users');
@@ -43,7 +43,7 @@ const createUser = (method, request, response) => {
 
 
 const getUserList = () => {
-  let userList = JSON.parse(fs.readFileSync('./prove-assignments/prove01.txt', 'utf-8')) || [];
+  let userList = JSON.parse(fs.readFileSync('./prove01.txt', 'utf-8')) || [];
   userList = userList.map(user => '<div>' + user + '</div>');
   return '' +
     '<html>' +
