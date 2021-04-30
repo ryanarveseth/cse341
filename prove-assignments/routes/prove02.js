@@ -18,8 +18,7 @@ router.get('/', (req, res) => {
 router.post('/add-book', (req, res) => {
 
   const {bookTitle, bookSummary} = req.body;
-  console.log('request.body', req.body);
-  books.push({bookTitle: bookTitle, bookSummary: bookSummary});
+  bookTitle && bookSummary && books.push({bookTitle: bookTitle, bookSummary: bookSummary});
   showForm = false;
 
   res.render('prove02', {
