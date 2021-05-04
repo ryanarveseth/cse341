@@ -2,10 +2,11 @@
 <html>
 <head>
   <% include ../includes/header.ejs %>
+  <% include ../includes/ta03.ejs %>
 </head>
 
 <body>
-  <% include ../includes/nav.ejs %>
+<% include ../includes/nav.ejs %>
 <div class="jumbotron text-center">
   <div class="container">
     <h1><%= title %></h1>
@@ -13,7 +14,26 @@
   </div>
 </div>
 <div class="container">
-  
+  <form action="/ta03/search" method="post">
+    <input name="searchValue">
+    <button type="submit">Search</button>
+  </form>
+</div>
+<div class="container">
+  <div class="grid">
+    <% items.filter(item => item.description.toLowerCase().includes(searchValue.toLowerCase()) || item.name.toLowerCase().includes(searchValue.toLowerCase())).forEach(item => {%>
+      <div class="card">
+        <img src="<%= item.imageUrl %>" alt="<%=item.name%>" width="250">
+        <h3><%= item.name %></h3>
+        <div class="description">
+          <%= item.description %>
+        </div>
+        <h4 class="price">
+          $<%= item.price %>
+        </h4>
+      </div>
+    <% }) %>
+  </div>
 </div>
 
 

@@ -1,0 +1,17 @@
+.card {
+    width: 300px;
+    box-shadow: darkgray 3px 5px 5px 5px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: 32px;
+    grid-column-gap: 16px;
+}
+
+input {
+    margin-bottom: 60px;
+}
