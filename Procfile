@@ -1,1 +1,1 @@
-web: node prove02.js
+web: node index.js
