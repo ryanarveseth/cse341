@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Toyota RAV4 Prime",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/06/2021-toyota-rav4-prime-front-3qtr.jpg",
+    "tags": ["Toyota", "hybrid", "SUV"],
+    "price": "26,250"
+  },
+  {
+    "id": 2,
+    "name": "Tesla Model Y",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/03/1200x675-2021-tesla-model-y.jpg",
+    "tags": ["Tesla", "Electric", "SUV"],
+    "price": "51,490"
+  },
+  {
+    "id": 3,
+    "name": "Ford Mustang Mach-E",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/11/2021-ford-mustang-mach-e-front-right-3q-16x9-1.jpg",
+    "tags": ["Ford", "Mustang", "Electric"],
+    "price": "61,000"
+  },
+  {
+    "id": 4,
+    "name": "Hyundai Santa Fe",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/10/2021-hyundai-santa-fe-driving-front-3qtr.jpg",
+    "tags": ["Hyundai", "SUV", "hybrid"],
+    "price": "27,000"
+  },
+  {
+    "id": 5,
+    "name": "Tesla Cybertruck",
+    "year": 2022,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/03/1200x675-tesla-cybertruck.jpg",
+    "tags": ["Tesla", "Electric", "Truck"],
+    "price": "39,900"
+  },
+  {
+    "id": 6,
+    "name": "Ford Bronco",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/07/2021-ford-bronco-2dr-front-3qtr-16x9-1.jpg",
+    "tags": ["Ford", "Bronco", "SUV"],
+    "price": "28,500"
+  },
+  {
+    "id": 7,
+    "name": "Ford F-150",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/06/2021-ford-f150-front-left-3qtr.jpg",
+    "tags": ["Truck", "F-150", "Ford"],
+    "price": "28,940"
+  },
+  {
+    "id": 8,
+    "name": "Audi E-Tron",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2020/12/2019-audi-e-tron-front-3qtr-4x3-1.jpg",
+    "tags": ["Electric", "Audi"],
+    "price": "65,900"
+  },
+  {
+    "id": 9,
+    "name": "Porsche Taycan",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2019/11/porsche-taycan-electric-car-12.jpg",
+    "tags": ["Porsche", "Taycan", "Electric"],
+    "price": "79,900"
+  },
+  {
+    "id": 10,
+    "name": "Tesla Model X",
+    "year": 2021,
+    "src": "https://www.kbb.com/wp-content/uploads/2021/04/2021-tesla-model-x.jpg",
+    "tags": ["Electric", "Butterfly", "Model X", "Tesla"],
+    "price": "79,990"
+  }
+]

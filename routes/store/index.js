@@ -5,6 +5,7 @@ const {getHomePage, getBuyPage, getSellPage} = require('../../controllers/storeC
 router
   .get('/', getHomePage)
   .get('/cars/find', getBuyPage)
+  .get('/cars/find/:id', getBuyPage)
   .get('/cars/sell', getSellPage)
 
   .use((req, res, next) => {

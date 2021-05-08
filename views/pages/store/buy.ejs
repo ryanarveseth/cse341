@@ -6,13 +6,35 @@
 
 <body>
 <% include ./includes/nav.ejs %>
-<div class="jumbotron text-center">
-    <div class="container">
+<div class="text-center">
+    <div>
         <div class="hero-container">
-        <div class="hero hero-camaro">
-            <h1><%= title %></h1>
+            <div class="hero hero-camaro">
+                <h1><%= title %></h1>
+            </div>
+            <div style="position: relative">
+                <i class="glyphicon glyphicon-chevron-down bottom-arrow"></i>
+            </div>
         </div>
+    </div>
+    <div style="height: 100vh; margin-top: 100vh">
+        <% if (car) { %>
+        <div class="card-lg">
+            <h2><%= car.year %> <%= car.name %></h2>
+            <img src="<%= car.src %>" width="800">
+            <a href="/cars/find"><h3><%= messages.goBack %></h3></a>
         </div>
+        <% } else { %>
+            <div class="car-grid">
+                <% cars.map(car => { %>
+                    <div class="card">
+                        <img src="<%= car.src %>" width="300">
+                        <a href="/cars/find/<%= car.id %>"><h3><%= car.year %> <%= car.name %></h3></a>
+                        <h4>From $<%= car.price %></h4>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
     </div>
 </div>
 

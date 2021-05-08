@@ -41,7 +41,7 @@
 .hero-container {
     height: 100vh;
     width: 100vw;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
 }
@@ -119,6 +119,7 @@
 .hero h1 {
     margin-top: 92px;
     color: #333333;
+    font-size: 63px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -150,4 +151,55 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;
+}
+
+.bottom-arrow {
+    position: absolute;
+    margin-top: calc(100vh - 64px);
+    color: rgba(3, 3, 3, .8);
+    font-size: 32px;
+    animation-name: bounce-5;
+    animation-timing-function: ease;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    box-shadow: 0 4px 2px -5px rgba(0,0,0,.5);
+}
+
+/* Animation from CSS tricks */
+@keyframes bounce-5 {
+    0%   { transform: scale(1,1)    translateY(0); }
+    10%  { transform: scale(1.1,.9) translateY(0); }
+    30%  { transform: scale(.9,1.1) translateY(-10px); }
+    50%  { transform: scale(1,1)    translateY(0); }
+    57%  { transform: scale(1,1)    translateY(-7px); }
+    64%  { transform: scale(1,1)    translateY(0); }
+    100% { transform: scale(1,1)    translateY(0); }
+}
+
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.car-grid {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    width: 1200px;
+    justify-content: center;
+    grid-gap: 32px;
+}
+
+.card {
+    max-width: 375px;
+    display: grid;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px 2px #666666;
+    padding: 16px;
+}
+
+.card-lg {
+    max-width: 900px;
 }
