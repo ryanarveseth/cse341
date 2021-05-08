@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default navbar-static-top navbar-inverse transparent">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="/" style="padding: 0 2rem; margin: 0" class="no-border-bottom">
+                    <img class="logo" src="/images/BYUI-logo.png" alt="BYU Idaho logo">
+                </a>
+            </li>
+            <li class="<%= path === '/' ? 'active' : '' %>">
+                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+            </li>
+            <li class="<%= path === '/cars/find' ? 'active' : '' %>">
+                <a href="/cars/find">Find a Car</a>
+            </li>
+            <li class="<%= path === '/cars/sell' ? 'active' : '' %>">
+                <a href="/cars/sell">Sell a Car</a>
+            </li>
+        </ul>
+    </div>
+</nav>
