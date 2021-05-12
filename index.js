@@ -31,8 +31,7 @@ const options = {
   family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://ryanarveseth:ArvesethRJ17@arvesethbyui.404m1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://ryanarveseth:9u7YILhVYFWuvM8O@arvesethbyui.404m1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const app = express();
 
