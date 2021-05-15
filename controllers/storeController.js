@@ -12,7 +12,9 @@ module.exports.getHomePage = (request, response, next) => {
 
 module.exports.getBuyPage = (request, response, next) => {
   if (request.params['id']) {
-    Car.findById(request.params['id']).then(car => {
+    Car.findById(request.params['id'])
+      .populate('seller')
+      .then(car => {
       response.render('pages/store/buy', {
         title: messages.findYourDreamCar,
         path: '/cars/find',
@@ -22,7 +24,9 @@ module.exports.getBuyPage = (request, response, next) => {
       });
     });
   } else {
-    Car.find().then(cars => {
+    Car.find()
+      .populate('seller')
+      .then(cars => {
       response.render('pages/store/buy', {
         title: messages.findYourDreamCar,
         path: '/cars/find',
@@ -36,7 +40,9 @@ module.exports.getBuyPage = (request, response, next) => {
 
 module.exports.getSellPage = (request, response, next) => {
   if (request.params['id']) {
-    Car.findById(request.params['id']).then(car => {
+    Car.findById(request.params['id'])
+      .populate('seller')
+      .then(car => {
       response.render('pages/store/sell', {
         title: messages.sellYourCar,
         path: '/cars/sell',
@@ -83,8 +89,9 @@ module.exports.addOrUpdateCarToSell = (request, response, next) => {
         car.src = src;
         car.price = price;
         car.description = description;
-        car.seller = seller;
-        car.save();
+        car.save().then(() => {
+          response.redirect('/cars/find');
+        });
       });
     });
   } else {
@@ -94,22 +101,21 @@ module.exports.addOrUpdateCarToSell = (request, response, next) => {
       phone: sellerPhone
     });
 
-    seller.save();
-
-    const car = new Car({
-      make: make,
-      model: model,
-      year: year,
-      src: src,
-      price: price,
-      description: description,
-      seller: seller
+    seller.save().then(savedSeller => {
+      const car = new Car({
+        make: make,
+        model: model,
+        year: year,
+        src: src,
+        price: price,
+        description: description,
+        seller: savedSeller._id
+      });
+      car.save().then(() => {
+        response.redirect('/cars/find');
+      });
     });
-
-    car.save();
   }
-
-  response.redirect('/cars/find');
 }
 ;
 
