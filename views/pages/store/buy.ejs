@@ -7,35 +7,67 @@
 <body>
 <% include ./includes/nav.ejs %>
 <div class="text-center">
-    <div>
-        <div class="hero-container">
-            <div class="hero hero-camaro">
-                <h1><%= title %></h1>
-            </div>
-            <div style="position: relative">
-                <i class="glyphicon glyphicon-chevron-down bottom-arrow"></i>
+    <% if (!car) { %>
+        <div>
+            <div class="hero-container">
+                <div class="hero hero-camaro">
+                    <h1><%= title %></h1>
+                </div>
+                <div style="position: relative">
+                    <i class="glyphicon glyphicon-chevron-down bottom-arrow"></i>
+                </div>
             </div>
         </div>
-    </div>
-    <div style="height: 100vh; margin-top: 100vh">
-        <% if (car) { %>
-        <div class="card-lg">
-            <h2><%= car.year %> <%= car.name %></h2>
+    <% } %>
+    <% if (car) { %>
+        <div class="card-grid card card-lg" style="margin: 0 auto">
+            <h2><%= car.year %> <%= car.make %> <%= car.model %></h2>
             <img src="<%= car.src %>" width="800">
-            <a href="/cars/find"><h3><%= messages.goBack %></h3></a>
+            <div>
+                <h3>
+                    <%= messages.carInfo %>
+                </h3>
+                <div>
+                    <%= car.description || messages.noAdditionalInfo %>
+                </div>
+                <h3>
+                    <%= messages.seller %>
+                </h3>
+                <div>
+                    <%= messages.sellerName %>
+                    <%= car.seller.name %>
+                </div>
+                <div>
+                    <%= messages.sellerEmail %>
+                    <%= car.seller.email %>
+                </div>
+                <div>
+                    <%= messages.sellerPhone %>
+                    <%= car.seller.phone %>
+                </div>
+            </div>
+            <a href="/cars/find"><h3><%= messages && messages.goBack %></h3></a>
         </div>
-        <% } else { %>
+    <% } else { %>
+        <div style="height: 100vh; margin-top: 100vh">
             <div class="car-grid">
                 <% cars.map(car => { %>
                     <div class="card">
+                        <div class="grid align-right">
+                            <a href="/cars/sell/<%= car._id %>"><div class="glyphicon glyphicon-pencil"></div></a>
+                            <a href="/cars/delete/<%= car._id %>"><div class="glyphicon glyphicon-trash"></div></a>
+                        </div>
                         <img src="<%= car.src %>" width="300">
-                        <a href="/cars/find/<%= car.id %>"><h3><%= car.year %> <%= car.name %></h3></a>
-                        <h4>From $<%= car.price %></h4>
+                        <a href="/cars/find/<%= car._id %>"><h2><%= car.year %> <%= car.make %> <%= car.model %></h2>
+                        </a>
+                        <h3>$<%= car.price %></h3>
+                        <div><%= car._id %></div>
                     </div>
                 <% }) %>
             </div>
-        <% } %>
-    </div>
+        </div>
+    <% } %>
+</div>
 </div>
 
 </body>

@@ -45,12 +45,7 @@ const storeRoutes = require('./routes/store')
 app.use(express.static(path.join(__dirname, 'public')))
    .set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
-   // For view engine as Pug
-   //.set('view engine', 'pug') // For view engine as PUG.
-   // For view engine as hbs (Handlebars)
-   //.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'})) // For handlebars
-   //.set('view engine', 'hbs')
-   .use(bodyParser({extended: false})) // For parsing the body of a POST
+   .use(bodyParser({extended: false}))
    .use(cors(corsOptions))
    .use('/ta01', ta01Routes)
    .use('/ta02', ta02Routes)
@@ -58,11 +53,9 @@ app.use(express.static(path.join(__dirname, 'public')))
    .use('/ta04', ta04Routes)
    .use('/', storeRoutes)
    .get('/home', (req, res, next) => {
-     // This is the primary index, always handled last.
      res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
     })
    .use((req, res, next) => {
-     // 404 page
      res.render('pages/404', {title: '404 - Page Not Found', path: req.url})
    });
 
@@ -70,8 +63,7 @@ mongoose
   .connect(
     MONGODB_URL, options
   )
-  .then(result => {
-  // This should be your user handling code implement following the course videos
+  .then(() => {
     app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
   })
   .catch(err => {
