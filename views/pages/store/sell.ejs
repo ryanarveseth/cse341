@@ -16,6 +16,7 @@
                         <%= car && car.make && car.model ? messages.editCar : messages.tellAboutYourCar %>
                     </h3>
                     <form class="" action="/cars/sell" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <input type="hidden" name="carId" value="<%= car._id || "" %>">
                         <input type="hidden" name="sellerId" value="<%= car.seller._id || "" %>">
                         <table>
@@ -67,30 +68,6 @@
                                 </td>
                                 <td>
                                     <textarea name="description"><%= car.description || "" %></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="sellerName"><%= messages.yourName %></label>
-                                </td>
-                                <td>
-                                    <input name="sellerName" value="<%= car.seller.name || "" %>" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="sellerPhone"><%= messages.yourPhone %></label>
-                                </td>
-                                <td>
-                                    <input name="sellerPhone" value="<%= car.seller.phone || "" %>" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="sellerEmail"><%= messages.yourEmail %></label>
-                                </td>
-                                <td>
-                                    <input name="sellerEmail" value="<%= car.seller.email || "" %>" required>
                                 </td>
                             </tr>
                             <tr>

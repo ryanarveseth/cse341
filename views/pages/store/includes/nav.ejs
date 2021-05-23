@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-static-top navbar-inverse transparent">
-    <div class="container">
+    <div class="container nav-flex">
         <ul class="nav navbar-nav">
             <li>
                 <a href="/" style="padding: 0 2rem; margin: 0" class="no-border-bottom">
@@ -12,9 +12,22 @@
             <li class="<%= path === '/cars/find' ? 'active' : '' %>">
                 <a href="/cars/find">Find a Car</a>
             </li>
+            <% if (user && user.name) { %>
             <li class="<%= path === '/cars/sell' ? 'active' : '' %>">
                 <a href="/cars/sell">Sell a Car</a>
             </li>
+            <% } %>
+        </ul>
+        <ul class="nav navbar-nav">
+            <% if (user.name) { %>
+            <li class="<%= path === '/logout' ? 'active' : '' %>">
+                <a href="/logout"><%= messages.logout %> <%= user.name %></a>
+            </li>
+            <% } else { %>
+                    <li class="<%= path === '/login' ? 'active' : '' %>">
+                        <a href="/login"><%= messages.login %></a>
+                    </li>
+            <% } %>
         </ul>
     </div>
 </nav>

@@ -16,15 +16,15 @@ const getDefaultPage = () => '' +
   '</html>';
 
 
-const createUser = (method, request, response) => {
+const createUser = (method, req, res) => {
   if (method === 'POST') {
     const body = [];
 
-    request.on('data', (chunk) => {
+    req.on('data', (chunk) => {
       body.push(chunk);
     });
 
-    return request.on('end', () => {
+    return req.on('end', () => {
       const parsedBody = Buffer.concat(body).toString();
       const userName = parsedBody.split('=')[1];
       const userListString = fs.readFileSync('./prove01.txt', 'utf-8');
@@ -34,9 +34,9 @@ const createUser = (method, request, response) => {
 
       fs.writeFileSync('./prove01.txt', JSON.stringify(userList));
 
-      response.statusCode = 302;
-      response.setHeader('Location', '/users');
-      return response.end();
+      res.statusCode = 302;
+      res.setHeader('Location', '/users');
+      return res.end();
     });
   }
 }

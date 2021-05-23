@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<% include ./includes/nav.ejs %>
+<%- include('./includes/nav.ejs', {messages: messages}) %>
 <div class="jumbotron text-center">
     <div class="container">
         <div class="hero-container">
@@ -13,10 +13,11 @@
                 <h1><%= title %></h1>
                 <div class="action-buttons">
                     <a class="btn-link" href="/cars/find"><%= messages &&  messages.findACar%></a>
-                    <a class="btn-link" href="/cars/sell"><%= messages &&  messages.sellACar%></a>
+                    <a class="btn-link" href="<%= user && user.name ? '/cars/sell' : '/login' %>"><%= messages &&  messages.sellACar%></a>
                 </div>
-                <div>
-                </div>
+                <% if (showLogin) { %>
+                    <%- include('./includes/login.ejs', {messages: messages}) %>
+                <% }%>
             </div>
         </div>
     </div>

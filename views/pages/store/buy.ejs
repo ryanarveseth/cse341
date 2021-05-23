@@ -49,22 +49,50 @@
             <a href="/cars/find"><h3><%= messages && messages.goBack %></h3></a>
         </div>
     <% } else { %>
-        <div style="height: 100vh; margin-top: 100vh">
-            <div class="car-grid">
-                <% cars.map(car => { %>
-                    <div class="card">
-                        <div class="grid align-right">
-                            <a href="/cars/sell/<%= car._id %>"><div class="glyphicon glyphicon-pencil"></div></a>
-                            <a href="/cars/delete/<%= car._id %>"><div class="glyphicon glyphicon-trash"></div></a>
+        <div style="height: 100vh; margin-top: 100vh;">
+            <% if (cars && cars.length > 0) { %>
+                <div class="car-grid">
+                    <% cars.map(car => { %>
+                        <div class="card">
+                            <div class="grid align-right">
+                                <% if (car && car.seller && car.seller._id && (car.seller._id.equals(user._id))) { %>
+                                    <a href="/cars/delete/<%= car._id %>">
+                                        <div class="glyphicon glyphicon-trash"></div>
+                                    </a>
+                                    <a href="/cars/sell/<%= car._id %>">
+                                        <div class="glyphicon glyphicon-pencil"></div>
+                                    </a>
+                                <% } %>
+                            </div>
+                            <img src="<%= car.src %>" width="300">
+                            <h2><%= car.year %> <%= car.make %> <%= car.model %><%= car.status === 'sold' ? messages.sold: ''%></h2>
+                            <h3 class="price">$<%= car.price %></h3>
+                            <a href="/cars/find/<%= car._id %>">
+                                <h4><%= messages.moreInfo %></h4>
+                            </a>
+                            <div class="card-footer">
+                                <% if (car && car.seller && car.seller._id && (!car.seller._id.equals(user._id)) && car.status !== 'sold') {%>
+                                    <% if (user && user.name) { %>
+                                        <!--
+                                            <a href="/cars/saveForLater/<%= car._id %>" class="button"><%= messages.saveForLater %></a>
+                                        -->
+                                        <div></div>
+                                        <a href="/cars/buy/<%= car._id %>" class="button"><%= messages.orderNow %></a>
+                                    <% } else { %>
+                                        <!--
+                                            <a href="/login" class="button"><%= messages.saveForLater %></a>
+                                        -->
+                                        <div></div>
+                                        <a href="/login" class="button"><%= messages.orderNow %></a>
+                                    <% } %>
+                                <% } %>
+                            </div>
                         </div>
-                        <img src="<%= car.src %>" width="300">
-                        <a href="/cars/find/<%= car._id %>"><h2><%= car.year %> <%= car.make %> <%= car.model %></h2>
-                        </a>
-                        <h3>$<%= car.price %></h3>
-                        <div><%= car._id %></div>
-                    </div>
-                <% }) %>
-            </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <h1 style="font-size: 60px; line-height: 200px;"><%= messages.noCarsAvailable %></h1>
+            <% } %>
         </div>
     <% } %>
 </div>

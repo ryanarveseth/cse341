@@ -16,6 +16,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const Seller = require('./model/Seller');
+const csrf = require('csurf');
+const flash = require('connect-flash');
+
+require('dotenv').config();
 
 const cors = require('cors');
 const corsOptions = {
@@ -31,40 +38,66 @@ const options = {
   family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://ryanarveseth:9u7YILhVYFWuvM8O@arvesethbyui.404m1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL;
 
 const app = express();
+const store = new MongoDBStore({
+  uri: MONGODB_URL,
+  collection: 'sessions',
+  expires: process.env.EXPIRES || 1000 * 60 * 15
+});
+
+const csrfProtection = csrf();
 
 // Route setup. You can implement more in the future!
 const ta01Routes = require('./routes/ta01');
 const ta02Routes = require('./routes/ta02');
 const ta03Routes = require('./routes/ta03');
 const ta04Routes = require('./routes/ta04');
-const storeRoutes = require('./routes/store')
+const storeRoutes = require('./routes/store');
+const loginRoutes = require('./routes/store/loginRoutes');
 
 app.use(express.static(path.join(__dirname, 'public')))
-   .set('views', path.join(__dirname, 'views'))
-   .set('view engine', 'ejs')
-   .use(bodyParser({extended: false}))
-   .use(cors(corsOptions))
-   .use('/ta01', ta01Routes)
-   .use('/ta02', ta02Routes)
-   .use('/ta03', ta03Routes)
-   .use('/ta04', ta04Routes)
-   .use('/', storeRoutes)
-   .get('/home', (req, res, next) => {
-     res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
-    })
-   .use((req, res, next) => {
-     res.render('pages/404', {title: '404 - Page Not Found', path: req.url})
-   });
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .use(bodyParser({extended: false}))
+  .use(cors(corsOptions))
+  .use(session({secret: 'my secret', resave: false, saveUninitialized: false, store: store}))
+  .use(csrfProtection)
+  .use(flash())
+  .use('/ta01', ta01Routes)
+  .use('/ta02', ta02Routes)
+  .use('/ta03', ta03Routes)
+  .use('/ta04', ta04Routes)
+  .use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+
+    if (req.session && req.session.user) {
+      Seller.findById(req.session.user._id).then(user => {
+        req.user = user;
+        res.locals.user = req.session.user;
+        next();
+      });
+    } else {
+      res.locals.user = {};
+      next();
+    }
+  })
+  .use('/', loginRoutes)
+  .use('/', storeRoutes)
+  .get('/home', (req, res, next) => {
+    res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
+  })
+  .use((req, res, next) => {
+    res.render('pages/404', {title: '404 - Page Not Found', path: req.url})
+  });
 
 mongoose
   .connect(
     MONGODB_URL, options
   )
   .then(() => {
-    app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
   })
   .catch(err => {
     console.log(err);

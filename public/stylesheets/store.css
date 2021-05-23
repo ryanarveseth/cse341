@@ -93,7 +93,7 @@
 }
 
 .navbar-inverse .navbar-nav > li > a:hover:after {
-    width: 100%;
+    width: 100% !important;
 }
 
 .navbar-inverse .navbar-nav > li > a:after {
@@ -199,19 +199,33 @@
 .car-grid {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 350px 350px 350px;
-    width: 1200px;
+    grid-template-columns: repeat(auto-fill, 350px);;
+    max-width: 1200px;
     justify-content: center;
     grid-gap: 32px;
 }
 
 .card {
+    position: relative;
     max-width: 375px;
     display: grid;
     justify-content: center;
     border-radius: 8px;
     box-shadow: 2px 5px 5px 5px #666666;
-    padding: 16px;
+    padding: 16px 16px 52px;
+}
+
+.card-footer {
+    display: flex;
+    width: calc(100% - 64px);
+    justify-content: space-between;
+    position: absolute;
+    bottom: 24px;
+    left: 32px;
+}
+
+.price {
+    margin-top: 0;
 }
 
 .card-lg {
@@ -266,7 +280,6 @@ td {
 }
 
 .save-button:hover {
-
     border: 1px solid #333333;
     color: #333333;
     transform: scale(1.05);
@@ -282,12 +295,67 @@ td {
 
 .grid {
     display: grid;
-    grid-template-columns: 16px 16px;
+    grid-template-columns: repeat(auto-fill, 16px);
+    direction: rtl;
     grid-column-gap: 12px;
     justify-content: right;
     font-size: 16px;
 }
 
+.grid * {
+    color: black;
+}
+
+.grid *:hover {
+    color: #888888;
+}
+
 .c-404, .c-404 p {
     color: #333333 !important;
+}
+
+.nav-flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-404 * {
+    color: #333333 !important;
+}
+
+.modal-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, .75);
+    z-index: 100;
+}
+
+.modal-container form {
+    min-height: 250px;
+    width: 400px;
+    background: #222244;
+    border-radius: 16px;
+    margin: 100px auto;
+    padding: 16px 16px 64px;
+}
+
+.flex-apart {
+    width: 360px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin: 0 auto;
+}
+
+.flex-apart label {
+    margin-top: 5px;
+}
+
+.modal-container form input {
+    color: black;
+    font-size: 15px;
 }

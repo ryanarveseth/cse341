@@ -1,25 +1,32 @@
 const express = require('express');
 const router = express.Router();
+const messages = require('../../model/messages.json');
 const {
   getHomePage,
   getBuyPage,
   getSellPage,
   addOrUpdateCarToSell,
-  removeCar
+  removeCar,
+  saveForLater,
+  buyCar
 } = require('../../controllers/storeController');
+
+const isAuth = require('../../middleware/is-auth');
 
 router
   .get('/', getHomePage)
   .get('/cars/find', getBuyPage)
   .get('/cars/find/:id', getBuyPage)
-  .get('/cars/sell', getSellPage)
-  .get('/cars/sell/:id', getSellPage)
-  .get('/cars/delete/:id', removeCar)
-  .post('/cars/sell', addOrUpdateCarToSell)
+  .get('/cars/sell', isAuth, getSellPage)
+  .get('/cars/saveForLater/:id', isAuth, saveForLater)
+  .get('/cars/buy/:id', isAuth, buyCar)
+  .get('/cars/sell/:id', isAuth, getSellPage)
+  .get('/cars/delete/:id', isAuth, removeCar)
+  .post('/cars/sell', isAuth, addOrUpdateCarToSell)
 
   .use((req, res, next) => {
     // 404 page
-    res.render('pages/store/404', {title: '404 - Page Not Found', path: req.url})
+    res.render('pages/store/404', {title: '404 - Page Not Found', path: req.url, messages: messages})
   })
 
 module.exports = router;

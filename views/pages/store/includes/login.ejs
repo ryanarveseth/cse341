@@ -1,0 +1,46 @@
+<div class="modal-container">
+    <form action="/login" method="post" style="position: relative">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <a href="/" class="glyphicon glyphicon-remove" style="color: white; float: right; font-size: 20px"></a>
+        <h2><%= messages.login %></h2>
+        <% if (isNew) { %>
+            <div class="flex-apart">
+                <label for="name"><%= messages.yourName %></label>
+                <input name="name">
+            </div>
+            <div class="flex-apart">
+                <label for="email"><%= messages.email %></label>
+                <input name="email" type="email">
+            </div>
+            <div class="flex-apart">
+                <label for="phone"><%= messages.yourPhone %></label>
+                <input name="phone">
+            </div>
+            <div class="flex-apart">
+                <label for="password"><%= messages.password %></label>
+                <input name="password" type="password">
+            </div>
+            <div class="flex-apart">
+                <label for="password"><%= messages.confirmPassword %></label>
+                <input name="confirmPassword" type="password">
+            </div>
+            <a href="/login" class="card-footer" style="width: fit-content"><%= messages.alreadyHaveAccount %></a>
+        <% } else { %>
+            <div class="flex-apart">
+                <label for="email"><%= messages.email %></label>
+                <input name="email" type="email">
+            </div>
+            <div class="flex-apart">
+                <label for="password"><%= messages.password %></label>
+                <input name="password" type="password">
+            </div>
+            <a href="/login-new" class="card-footer" style="width: fit-content"><%= messages.createNewAccount %></a>
+        <% } %>
+        <div style="color: lightcoral">
+            <%= loginError %>
+        </div>
+        <div style="float: right; margin-top: 16px; margin-right: 12px;">
+            <button class="save-button" ><%= isNew ? messages.createAccount : messages.login %></button>
+        </div>
+    </form>
+</div>

@@ -8,6 +8,7 @@ const carSchema = new Schema({
   src: {type: String, required: true},
   price: {type: Number, required: true},
   description: String,
+  status: String,
   seller: {type: Schema.Types.ObjectId, ref: 'Seller', required: true},
 });
 
