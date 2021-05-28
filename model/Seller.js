@@ -8,7 +8,9 @@ const sellerSchema = new Schema({
   savedForLater: [
     { carId: {type: Schema.Types.ObjectId, ref: 'Car'} }
   ],
-  password: {type: String, required: true}
+  password: {type: String, required: true},
+  resetToken: String,
+  resetTokenExpiration: Date,
 });
 
 

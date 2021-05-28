@@ -140,10 +140,6 @@ module.exports.saveForLater = (req, res, next) => {
     });
 };
 
-
-
-
-
 module.exports.buyCar = (req, res, next) => {
   const carId = req.params['id'];
   const {_id: userId} = req.session.user;
@@ -176,7 +172,7 @@ module.exports.buyCar = (req, res, next) => {
           // send notification to seller
           transporter.sendMail({
             to: car.seller.email,
-            from: "arv18001@byui.edu",
+            from: process.env.SERVER_EMAIL,
             subject: "Your car has been sold",
             html: `<h1>Congratulations! Your ${car.year} ${car.make} ${car.model} has been sold.</h1>`
           });
@@ -184,7 +180,7 @@ module.exports.buyCar = (req, res, next) => {
           // send confirmation to buyer
           transporter.sendMail({
             to: req.session.user.email,
-            from: "arv18001@byui.edu",
+            from: process.env.SERVER_EMAIL,
             subject: "Thanks for buying a car on our site!",
             html: `<h1>Congratulations! Your ${car.year} ${car.make} ${car.model} is on its way.</h1>`
           });

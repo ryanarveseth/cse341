@@ -35,6 +35,7 @@
   "saveForLater": "Save for Later",
   "orderNow": "Order Now",
   "moreInfo": "More Info",
+  "forgotPassword": "Forgot your password?",
   "createAccount": "Create account",
   "alreadyHaveAccount": "Already have an account?",
   "createNewAccount": "Set up new account",
@@ -45,5 +46,12 @@
   "incorrectPassword": "Incorrect Password.",
   "genericIssue": "Oops. Something went wrong.",
   "userAlreadyExists": "User already exists.",
-  "sold": " (SOLD)"
+  "noAccountWithEmail": "No account with that email found.",
+  "sold": " (SOLD)",
+  "resetRequestExpires": "Password request expires 15 minutes from when the reset was requested.",
+  "ignoreIf": "If you did not send this request, you can ignore this email.",
+  "pleaseClick": "Please click ",
+  "here": "here",
+  "toResetPassword": " to reset your password",
+  "updatePassword": "Update Password"
 }
