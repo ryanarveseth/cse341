@@ -13,17 +13,40 @@
 </h4>
 <div class="text-center">
     <div id="pagination">
+        <!--  First Page  -->
         <a href="<%= page !== 1 ? '/comments/1' : '' %>"
            class="pagination-btn btn-chevron <%= page === 1 ? 'isDisabled' : '' %>">
             &#8249;&#8249;
         </a>
-        <% for (let i = 1; i < pageCount; i++) { %>
-            <a href="/comments/<%= i %>" id="page-<%= i %>"
-               class="pagination-btn <%= page === i ? 'active' : '' %>">
-                <%= i %>
+        <% if (page === pageCount - 1) { %>
+            <a href="/comments/<%= page - 2 %>"
+               class="pagination-btn">
+                <%= page - 2 %>
             </a>
         <% } %>
-        <a href="<%= page !== pageCount - 1 ? `/comments/${pageCount -1}` : '' %>"
+        <% if (page !== 1) { %>
+            <a href="/comments/<%= page - 1 %>"
+               class="pagination-btn">
+                <%= page - 1 %>
+            </a>
+        <% } %>
+        <a href=""
+           class="pagination-btn active">
+            <%= page %>
+        </a>
+        <% if (page !== pageCount - 1) { %>
+            <a href="/comments/<%= page + 1 %>"
+               class="pagination-btn">
+                <%= page + 1 %>
+            </a>
+        <% } %>
+        <% if (page === 1) { %>
+            <a href="/comments/<%= page + 2 %>"
+               class="pagination-btn">
+                <%= page + 2 %>
+            </a>
+        <% } %>
+        <a href="<%= page !== pageCount - 1 ? `/comments/${pageCount - 1}` : '' %>"
            class="pagination-btn btn-chevron <%= page === pageCount - 1 ? 'isDisabled' : '' %>">
             &#8250;&#8250;
         </a>

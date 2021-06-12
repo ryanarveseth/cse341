@@ -3,23 +3,25 @@ const messages = require('../model/messages.json');
 const Comment = require('../model/Comment');
 const mongoose = require('mongoose');
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 10;
 
 
 const getComments = (page, res) =>
-  Comment.find()
-    .skip((page - 1) * ITEMS_PER_PAGE)
-    .limit(ITEMS_PER_PAGE)
-    .then(comments => {
-      return res.render('pages/store/comments', {
-        title: 'Finding your dream car. Made easier.',
-        path: '/comments',
-        messages: messages,
-        page: page,
-        pageCount: 500 / ITEMS_PER_PAGE + 1,
-        comments: comments
-      });
-    });
+  Comment.countDocuments().then(count =>
+    Comment.find()
+      .skip((page - 1) * ITEMS_PER_PAGE)
+      .limit(ITEMS_PER_PAGE)
+      .then(comments => {
+        return res.render('pages/store/comments', {
+          title: 'Finding your dream car. Made easier.',
+          path: '/comments',
+          messages: messages,
+          page: page,
+          pageCount: Math.ceil(count / ITEMS_PER_PAGE) + 1,
+          comments: comments
+        });
+      })
+  );
 
 module.exports.getCommentsPage = (req, res, next) => {
   let page = 1;
