@@ -53,5 +53,7 @@
   "pleaseClick": "Please click ",
   "here": "here",
   "toResetPassword": " to reset your password",
-  "updatePassword": "Update Password"
+  "updatePassword": "Update Password",
+  "commentsPageWithPagination": "Comments Page with Pagination",
+  "comment": "Comment: "
 }

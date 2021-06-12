@@ -359,3 +359,42 @@ td {
     color: black;
     font-size: 15px;
 }
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pagination-btn {
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.pagination-btn:focus,
+.pagination-btn:hover,
+.pagination-btn.active {
+    color: white;
+    background-color: black;
+    text-decoration: none;
+}
+
+#pagination {
+    margin-bottom: 24px;
+    margin-top: 24px;
+}
+
+.btn-chevron {
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.isDisabled,
+.isDisabled:hover {
+    color: dimgray;
+    background-color: white;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}

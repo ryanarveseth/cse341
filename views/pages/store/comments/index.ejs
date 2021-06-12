@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../includes/header.ejs %>
+</head>
+<body>
+<% include ../includes/nav.ejs %>
+<h1 style="margin-top: 64px;">
+    <%= messages.commentsPageWithPagination %>
+</h1>
+<h4>
+    (I used lorem ipsum for these, so they won't make any sense)
+</h4>
+<div class="text-center">
+    <div id="pagination">
+        <a href="<%= page !== 1 ? '/comments/1' : '' %>"
+           class="pagination-btn btn-chevron <%= page === 1 ? 'isDisabled' : '' %>">
+            &#8249;&#8249;
+        </a>
+        <% for (let i = 1; i < pageCount; i++) { %>
+            <a href="/comments/<%= i %>" id="page-<%= i %>"
+               class="pagination-btn <%= page === i ? 'active' : '' %>">
+                <%= i %>
+            </a>
+        <% } %>
+        <a href="<%= page !== pageCount - 1 ? `/comments/${pageCount -1}` : '' %>"
+           class="pagination-btn btn-chevron <%= page === pageCount - 1 ? 'isDisabled' : '' %>">
+            &#8250;&#8250;
+        </a>
+    </div>
+    <div class="car-grid" style="margin-bottom: 64px;">
+        <% comments.map((comment) => { %>
+            <div class="card">
+                <h4>
+                    <%= comment.subject %>
+                </h4>
+                <p>
+                    <b>
+                        <%= messages.comment %>
+                    </b>
+                    <span>
+                        <%= comment.body %>
+                    </span>
+                </p>
+                <small class="card-footer">
+                    <%= comment.email %>
+                </small>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+</body>
+</html>

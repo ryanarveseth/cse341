@@ -10,6 +10,9 @@ const {
   saveForLater,
   buyCar
 } = require('../../controllers/storeController');
+const {
+  getCommentsPage
+} = require('../../controllers/commentController');
 
 const isAuth = require('../../middleware/is-auth');
 
@@ -23,6 +26,7 @@ router
   .get('/cars/sell/:id', isAuth, getSellPage)
   .get('/cars/delete/:id', isAuth, removeCar)
   .post('/cars/sell', isAuth, addOrUpdateCarToSell)
+  .get(['/comments', '/comments/:page'], getCommentsPage)
 
   .use((req, res, next) => {
     // 404 page
