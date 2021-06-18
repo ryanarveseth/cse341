@@ -13,6 +13,9 @@ const {
 const {
   getCommentsPage
 } = require('../../controllers/commentController');
+const {
+  getPokemonPage
+} = require('../../controllers/pokemonController');
 
 const isAuth = require('../../middleware/is-auth');
 
@@ -21,11 +24,13 @@ router
   .get('/cars/find', getBuyPage)
   .get('/cars/find/:id', getBuyPage)
   .get('/cars/sell', isAuth, getSellPage)
+  .post('/cars/sell', isAuth, addOrUpdateCarToSell)
   .get('/cars/saveForLater/:id', isAuth, saveForLater)
   .get('/cars/buy/:id', isAuth, buyCar)
   .get('/cars/sell/:id', isAuth, getSellPage)
   .get('/cars/delete/:id', isAuth, removeCar)
-  .post('/cars/sell', isAuth, addOrUpdateCarToSell)
+  .get('/pokemon', getPokemonPage)
+  .post('/pokemon', getPokemonPage)
   .get(['/comments', '/comments/:page'], getCommentsPage)
 
   .use((req, res, next) => {

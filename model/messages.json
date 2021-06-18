@@ -55,5 +55,6 @@
   "toResetPassword": " to reset your password",
   "updatePassword": "Update Password",
   "commentsPageWithPagination": "Comments Page with Pagination",
-  "comment": "Comment: "
+  "comment": "Comment: ",
+  "moreInfo": "More (JSON) Info Here"
 }
