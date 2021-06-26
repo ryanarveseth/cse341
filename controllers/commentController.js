@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const ITEMS_PER_PAGE = 10;
 
-
 const getComments = (page, res) =>
   Comment.countDocuments().then(count =>
     Comment.find()

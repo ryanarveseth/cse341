@@ -21,6 +21,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const Seller = require('./model/Seller');
 const csrf = require('csurf');
 const flash = require('connect-flash');
+const messages = require('./model/messages');
 
 require('dotenv').config();
 
@@ -56,6 +57,7 @@ const ta03Routes = require('./routes/ta03');
 const ta04Routes = require('./routes/ta04');
 const storeRoutes = require('./routes/store');
 const loginRoutes = require('./routes/store/loginRoutes');
+const avengersRoutes = require('./routes/avengersRoutes');
 
 app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -85,6 +87,11 @@ app.use(express.static(path.join(__dirname, 'public')))
   })
   .use('/', loginRoutes)
   .use('/', storeRoutes)
+  .use('/avengers', avengersRoutes)
+  .use((req, res, next) => {
+    // 404 page
+    res.render('pages/store/404', {title: '404 - Page Not Found', path: req.url, messages: messages})
+  })
   .get('/home', (req, res, next) => {
     res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
   })

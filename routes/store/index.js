@@ -31,11 +31,6 @@ router
   .get('/cars/delete/:id', isAuth, removeCar)
   .get('/pokemon', getPokemonPage)
   .post('/pokemon', getPokemonPage)
-  .get(['/comments', '/comments/:page'], getCommentsPage)
-
-  .use((req, res, next) => {
-    // 404 page
-    res.render('pages/store/404', {title: '404 - Page Not Found', path: req.url, messages: messages})
-  })
+  .get(['/comments', '/comments/:page'], getCommentsPage);
 
 module.exports = router;
