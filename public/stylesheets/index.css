@@ -46,18 +46,6 @@
     top: 0;
 }
 
-.hero-tesla {
-    background-image: url('../images/tesla-unsplash.jpg');
-}
-
-.hero-camaro {
-    background-image: url('../images/camaro-unsplash.jpg');
-}
-
-.hero-lambo {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../images/jeep-unsplash.jpg');
-}
-
 .hero {
     height: 100%;
     background-position: center;
