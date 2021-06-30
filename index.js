@@ -41,7 +41,7 @@ const store = new MongoDBStore({
 const csrfProtection = csrf();
 
 // Route setup. You can implement more in the future!
-const proveRoutes = require('./routes/prove10');
+const proveRoutes = require('./routes/prove11');
 
 app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
