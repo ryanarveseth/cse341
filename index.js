@@ -39,7 +39,7 @@ const store = new MongoDBStore({
 // Route setup. You can implement more in the future!
 const proveRoutes = require('./routes/prove12');
 
-app.use(express.static(path.resolve(__dirname, '../ui/build')))
+app.use(express.static('ui/build'))
   .use(bodyParser({extended: false}))
   .use(cors(corsOptions))
   .use(session({secret: 'my secret', resave: false, saveUninitialized: false, store: store}))
