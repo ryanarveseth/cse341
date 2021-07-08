@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localho
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const flash = require('connect-flash');
-const messages = require('./model/messages');
 
 require('dotenv').config();
 
@@ -45,10 +44,7 @@ app.use(express.static(path.resolve(__dirname, '../ui/build')))
   .use(cors(corsOptions))
   .use(session({secret: 'my secret', resave: false, saveUninitialized: false, store: store}))
   .use(flash())
-  .use('/api', proveRoutes)
-  .use((req, res, next) => {
-    res.render('pages/404', {title: '404 - Page Not Found', path: req.url, messages: messages})
-  });
+  .use('/api', proveRoutes);
 
 const server = app.listen(PORT)
 
