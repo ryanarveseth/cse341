@@ -17,7 +17,6 @@ const path = require('path');
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const csrf = require('csurf');
 const flash = require('connect-flash');
 const messages = require('./model/messages');
 
@@ -38,24 +37,15 @@ const store = new MongoDBStore({
   expires: process.env.EXPIRES || 1000 * 60 * 15
 });
 
-const csrfProtection = csrf();
-
 // Route setup. You can implement more in the future!
-const proveRoutes = require('./routes/prove11');
+const proveRoutes = require('./routes/prove12');
 
-app.use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
+app.use(express.static(path.resolve(__dirname, '../ui/build')))
   .use(bodyParser({extended: false}))
   .use(cors(corsOptions))
   .use(session({secret: 'my secret', resave: false, saveUninitialized: false, store: store}))
-  .use(csrfProtection)
   .use(flash())
-  .use((req, res, next) => {
-    res.locals.csrfToken = req.csrfToken();
-    next();
-  })
-  .use('/', proveRoutes)
+  .use('/api', proveRoutes)
   .use((req, res, next) => {
     res.render('pages/404', {title: '404 - Page Not Found', path: req.url, messages: messages})
   });
@@ -66,7 +56,23 @@ const io = require('socket.io')(server);
 
 io.on('connection', socket => {
 
-  socket.on('new-avenger', () => {
-    socket.broadcast.emit('update-avengers');
-  })
+  socket
+    .on("disconnect", () => {
+
+    })
+    .on("new-user", (username, time) => {
+      const message = `${username} has entered the chat.`;
+
+      socket.broadcast.emit("new-message", {
+        message,
+        time,
+        from: "ChatterBot"
+      });
+    })
+    .on("new-count", (count) => {
+      socket.broadcast.emit("new-user-count", count);
+    })
+    .on("new-chat", (message) => {
+      socket.broadcast.emit("new-message", {...message});
+    });
 })
