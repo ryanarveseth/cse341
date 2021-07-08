@@ -24,14 +24,14 @@ const IndividualMessage = ({chat, userName}) => {
       <small>
         {from}
       </small>
-    <Message style={{backgroundColor: backgroundColor, color: color, ...styles}}>
-      <div>
-        {message}
-      </div>
-      <small>
-        {time}
-      </small>
-    </Message>
+      <Message style={{backgroundColor: backgroundColor, color: color, ...styles}}>
+        <div>
+          {message}
+        </div>
+        <small>
+          {time}
+        </small>
+      </Message>
     </div>
   );
 }
